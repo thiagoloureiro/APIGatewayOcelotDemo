@@ -1,0 +1,64 @@
+﻿{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/stock",
+      "DownstreamScheme": "http",
+      "UpstreamPathTemplate": "/stock",
+      "UpstreamHttpMethod": [ "Get" ],
+      "FileCacheOptions": { "TtlSeconds": 10 },
+      "ServiceName": "stockservice",
+      "LoadBalancerOptions": {
+        "Type": "LeastConnection"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/customer",
+      "DownstreamScheme": "http",
+      "UpstreamPathTemplate": "/customer",
+      "UpstreamHttpMethod": [ "Get" ],
+      "FileCacheOptions": { "TtlSeconds": 10 },
+      "ServiceName": "customerservice",
+      "LoadBalancerOptions": {
+        "Type": "LeastConnection"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/currency",
+      "DownstreamScheme": "http",
+      "UpstreamPathTemplate": "/currency",
+      "UpstreamHttpMethod": [ "Get" ],
+      "FileCacheOptions": { "TtlSeconds": 10 },
+      "ServiceName": "currencyservice",
+      "LoadBalancerOptions": {
+        "Type": "LeastConnection"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/news",
+      "DownstreamScheme": "http",
+      "UpstreamPathTemplate": "/news",
+      "UpstreamHttpMethod": [ "Get" ],
+      "FileCacheOptions": { "TtlSeconds": 10 },
+      "ServiceName": "newsservice",
+      "LoadBalancerOptions": {
+        "Type": "LeastConnection"
+      }
+    }
+  ],
+  "GlobalConfiguration": {
+    "RequestIdKey": null,
+    "ServiceDiscoveryProvider": {
+      "Host": "172.17.0.2",
+      "Port": 8500,
+      "Type": "Consul"
+    },
+    "RateLimitOptions": {
+      "ClientIdHeader": "ClientId",
+      "QuotaExceededMessage": "",
+      "RateLimitCounterPrefix": "",
+      "DisableRateLimitHeaders": false,
+      "HttpStatusCode": 428
+    },
+    "DownstreamScheme": "http"
+  }
+}
