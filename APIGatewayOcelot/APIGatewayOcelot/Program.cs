@@ -10,7 +10,7 @@ namespace APIGatewayOcelot
         public static void Main(string[] args)
         {
             new WebHostBuilder()
-               
+
                 .UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .ConfigureAppConfiguration((hostingContext, config) =>
@@ -18,7 +18,6 @@ namespace APIGatewayOcelot
                     config
                         .SetBasePath(hostingContext.HostingEnvironment.ContentRootPath)
                         .AddJsonFile("appsettings.json", true, true)
-                        .AddJsonFile($"appsettings.{hostingContext.HostingEnvironment.EnvironmentName}.json", true, true)
                         .AddJsonFile("ocelot.json", false, false)
                         .AddEnvironmentVariables();
                 })

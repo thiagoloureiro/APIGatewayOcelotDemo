@@ -1,0 +1,88 @@
+version: '3'
+
+services:
+  stock:
+    image: thiagoguaru/stockapi:latest
+    ports:
+      - "9089:80"
+    depends_on:
+      - "consul"
+    networks:
+      demo-consul:
+  stock2:
+    image: thiagoguaru/stockapi:latest
+    ports:
+      - "9090:80"
+    depends_on:
+      - "consul"
+    networks:
+      demo-consul:
+  customer:
+    image: thiagoguaru/customerapi:latest
+    ports:
+      - "9091:80"
+    depends_on:
+      - "consul"
+    networks:
+      demo-consul:
+  customer2:
+    image: thiagoguaru/customerapi:latest
+    ports:
+      - "9092:80"
+    depends_on:
+      - "consul"
+    networks:
+      demo-consul:
+  currency:
+    image: thiagoguaru/currencyapi:latest
+    ports:
+      - "9093:80"
+    depends_on:
+      - "consul"
+    networks:
+      demo-consul:
+  currency2:
+    image: thiagoguaru/currencyapi:latest
+    ports:
+      - "9094:80"
+    depends_on:
+      - "consul"
+    networks:
+      demo-consul:
+  news:
+    image: thiagoguaru/newsapi:latest
+    ports:
+      - "9095:80"
+    depends_on:
+      - "consul"
+    networks:
+      demo-consul:
+  news2:
+    image: thiagoguaru/newsapi:latest
+    ports:
+      - "9096:80"
+    depends_on:
+      - "consul"
+    networks:
+      demo-consul:
+  gateway:
+    image: thiagoguaru/gatewayocelot:latest
+    ports:
+      - "3000:3000"
+    depends_on:
+      - "consul"
+    networks:
+      demo-consul:
+  consul:
+    image: "consul"
+    ports:
+      - "8500:8500"
+      - "8600:8600"
+    hostname: "consul"
+    networks:
+      demo-consul:
+        aliases:
+          - consul
+
+networks:
+  demo-consul:
